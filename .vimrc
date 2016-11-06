@@ -64,9 +64,12 @@ if dein#load_state(s:dein_dir)
 	call dein#add('tpope/vim-fugitive')
 
   " Util
-	call dein#add('Shougo/unite.vim')
 	call dein#add('tomtom/tcomment_vim')
 	call dein#add('vim-scripts/YankRing.vim')
+
+  " Unite
+	call dein#add('Shougo/unite.vim')
+	call dein#add('ujihisa/unite-colorscheme')
 
 	" Colorscheme
 	call dein#add('flazz/vim-colorschemes')
@@ -188,6 +191,7 @@ if dein#tap('vim-airline')
 	let g:airline_detect_paste=0
 	let g:airline#extensions#hunks#enabled=0
 	let g:airline#extensions#tabline#excludes = ['vimfiler:default']
+	let g:airline#extensions#tabline#fnamemod = ':t'
 
 	let g:airline_left_sep = ''
 	let g:airline_left_sep = ''
@@ -283,7 +287,7 @@ filetype plugin indent on
 set hidden
 
 " Colorscheme
-colorscheme molokai
+colorscheme maui
 
 " }}}
 

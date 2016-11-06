@@ -71,6 +71,9 @@ if dein#load_state(s:dein_dir)
 	call dein#add('Shougo/unite.vim')
 	call dein#add('ujihisa/unite-colorscheme')
 
+	" Rails
+	call dein#add('tpope/vim-rails')
+
 	" Colorscheme
 	call dein#add('flazz/vim-colorschemes')
 

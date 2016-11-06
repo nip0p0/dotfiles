@@ -1,1 +1,2 @@
-# dotfiles
+# Dotfiles
+This is my private dotfiles.

@@ -250,6 +250,9 @@ set incsearch
 set tabstop=2
 set shiftwidth=2
 
+" Accessing the system clipboard
+set clipboard=unnamed,autoselect
+
 " Avoid automatic indentation 
 autocmd InsertLeave *
       \ if &paste | set nopaste mouse=a | echo 'nopaste' | endif |

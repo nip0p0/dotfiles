@@ -297,6 +297,7 @@ colorscheme maui
 
 " }}}
 
+" Check whether plugins should be installed or not
 if has('vim_starting') && dein#check_install()
   call dein#install()
 endif

@@ -283,7 +283,7 @@ filetype plugin indent on
 set hidden
 
 " Colorscheme
-colorscheme cobalt2
+colorscheme molokai
 
 " }}}
 

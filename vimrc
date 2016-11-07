@@ -66,6 +66,11 @@ if dein#load_state(s:dein_dir)
   " Util
 	call dein#add('tomtom/tcomment_vim')
 	call dein#add('vim-scripts/YankRing.vim')
+	call dein#add('rhysd/accelerated-jk')
+
+	" Colorization
+	call dein#add('vim-scripts/AnsiEsc.vim')
+	call dein#add('bronson/vim-trailing-whitespace')
 
   " Unite
 	call dein#add('Shougo/unite.vim')
@@ -86,6 +91,10 @@ endif
 " }}}
 
 " Plugin settings {{{
+
+" accelerated-jk
+nmap j <Plug>(accelerated_jk_gj)
+nmap k <Plug>(accelerated_jk_gk)
 
 " ctrlp.vim
 if dein#tap('ctrlp.vim')
@@ -228,6 +237,12 @@ if dein#tap('vimfiler.vim')
 		set nonumber
 		set norelativenumber
 	endfunction
+endif
+
+" vim-trailing-whitespace
+if dein#tap('vim-trailing-whitespace')
+	" Delete whitespace automatically when current file is saved
+	autocmd BufWritePre * :FixWhitespace
 endif
 
 " }}}

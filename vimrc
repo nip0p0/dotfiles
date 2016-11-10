@@ -40,7 +40,6 @@ if dein#load_state(s:dein_dir)
 
   " Completion
 	call dein#add('Shougo/neocomplete.vim')
-
 	call dein#add('cohama/lexima.vim')
 
   " Linter
@@ -49,6 +48,7 @@ if dein#load_state(s:dein_dir)
   " Syntax highlight
 	call dein#add('othree/yajs.vim')
 	call dein#add('othree/javascript-libraries-syntax.vim')
+	call dein#add('kchmck/vim-coffee-script')
 
   " Statusline
 	call dein#add('vim-airline/vim-airline')
@@ -262,7 +262,7 @@ set showmatch
 set ruler
 
 " Enable incsearch
-set incsearch 
+set incsearch
 
 " Set default indent width
 set tabstop=2
@@ -271,7 +271,7 @@ set shiftwidth=2
 " Accessing the system clipboard
 set clipboard=unnamed,autoselect
 
-" Avoid automatic indentation 
+" Avoid automatic indentation
 autocmd InsertLeave *
       \ if &paste | set nopaste mouse=a | echo 'nopaste' | endif |
       \ if &l:diff | diffupdate | endif

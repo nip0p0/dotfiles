@@ -53,11 +53,11 @@ source $HOME/.zplug/init.zsh
 
 # Make sure to use double quotes
 zplug "zsh-users/zsh-history-substring-search"
-zplug 'zsh-users/zsh-autosuggestions'
+zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting", nice:10
 
 zplug "b4b4r07/zsh-vimode-visual", \
-	    use:"*.sh"
+	use:"*.zsh"
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -77,11 +77,11 @@ colors
 
 setopt prompt_subst
 
-zstyle ':vcs_info:git:*' check-for-changes true #formats 設定項目で %c,%u が使用可
-zstyle ':vcs_info:git:*' stagedstr "%F{magenta}!" #commit されていないファイルがある
-zstyle ':vcs_info:git:*' unstagedstr "%F{yellow}+" #add されていないファイルがある
-zstyle ':vcs_info:*' formats "%F{green}%c%u(%b)%f" #通常
-zstyle ':vcs_info:*' actionformats '[%b|%a]' #rebase 途中,merge コンフリクト等 formats 外の表示
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr "%F{magenta}!"
+zstyle ':vcs_info:git:*' unstagedstr "%F{yellow}+"
+zstyle ':vcs_info:*' formats "%F{green}%c%u(%b)%f"
+zstyle ':vcs_info:*' actionformats '[%b|%a]'
 
 # call vsc_info
 precmd () { vcs_info }

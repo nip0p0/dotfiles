@@ -46,22 +46,49 @@ alias be='bundle exec'
 alias rs='rails s'
 alias -g G='| grep'
 
-# Antigen settings
-source $(brew --prefix)/share/antigen/antigen.zsh
+source $HOME/.zplug/init.zsh
 
-# Load the oh-my-zsh's library.
-antigen-use oh-my-zsh
+# Make sure to use double quotes
+zplug "zsh-users/zsh-history-substring-search"
+zplug 'zsh-users/zsh-autosuggestions'
+zplug "zsh-users/zsh-syntax-highlighting", nice:10
 
-antigen-bundle git
-antigen-bundle sudo
-antigen-bundle command-not-found
+zplug "b4b4r07/zsh-vimode-visual", \
+	    use:"*.sh"
 
-antigen-bundle b4b4r07/emoji-cli
-antigen-bundle zsh-users/zsh-syntax-highlighting
-antigen-bundle zsh-users/zsh-completions
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+	printf "Install? [y/N]: "
+	if read -q; then
+		echo; zplug install
+	fi
+fi
 
-# Load the theme.
-antigen-theme robbyrussell
+# Then, source plugins
+zplug load
 
-# Tell antigen that you're done.
-antigen-apply
+# VCSの情報を取得するzsh関数
+autoload -Uz vcs_info
+autoload -Uz colors # black red green yellow blue magenta cyan white
+colors
+
+# PROMPT変数内で変数参照
+setopt prompt_subst
+
+zstyle ':vcs_info:git:*' check-for-changes true #formats 設定項目で %c,%u が使用可
+zstyle ':vcs_info:git:*' stagedstr "%F{magenta}!" #commit されていないファイルがある
+zstyle ':vcs_info:git:*' unstagedstr "%F{yellow}+" #add されていないファイルがある
+zstyle ':vcs_info:*' formats "%F{green}%c%u(%b)%f" #通常
+zstyle ':vcs_info:*' actionformats '[%b|%a]' #rebase 途中,merge コンフリクト等 formats 外の表示
+
+# %b ブランチ情報
+# %a アクション名(mergeなど)
+# %c changes
+# %u uncommit
+
+# プロンプト表示直前に vcs_info 呼び出し
+precmd () { vcs_info }
+
+# プロンプト（左）
+PROMPT='%{$fg[cyan]%}%~:%{$reset_color%}'
+PROMPT=$PROMPT'${vcs_info_msg_0_} %{${fg[cyan]}%}%}$%{${reset_color}%} '

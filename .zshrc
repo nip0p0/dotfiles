@@ -11,6 +11,9 @@ export EMOJI_CLI_KEYBIND="^b"
 export XDG_CONFIG_HOME=$HOME/.nvim
 export PATH="/usr/local/sbin:$PATH"
 
+# Use viins keymaps
+bindkey -v
+
 # Initialize rbenv
 eval "$(rbenv init -)"
 
@@ -67,12 +70,11 @@ fi
 # Then, source plugins
 zplug load
 
-# VCSの情報を取得するzsh関数
+# get vcs_info with thi function
 autoload -Uz vcs_info
 autoload -Uz colors # black red green yellow blue magenta cyan white
 colors
 
-# PROMPT変数内で変数参照
 setopt prompt_subst
 
 zstyle ':vcs_info:git:*' check-for-changes true #formats 設定項目で %c,%u が使用可
@@ -81,14 +83,8 @@ zstyle ':vcs_info:git:*' unstagedstr "%F{yellow}+" #add されていないファ
 zstyle ':vcs_info:*' formats "%F{green}%c%u(%b)%f" #通常
 zstyle ':vcs_info:*' actionformats '[%b|%a]' #rebase 途中,merge コンフリクト等 formats 外の表示
 
-# %b ブランチ情報
-# %a アクション名(mergeなど)
-# %c changes
-# %u uncommit
-
-# プロンプト表示直前に vcs_info 呼び出し
+# call vsc_info
 precmd () { vcs_info }
 
-# プロンプト（左）
 PROMPT='%{$fg[cyan]%}%~:%{$reset_color%}'
 PROMPT=$PROMPT'${vcs_info_msg_0_} %{${fg[cyan]}%}%}$%{${reset_color}%} '

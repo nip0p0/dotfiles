@@ -308,6 +308,8 @@ filetype plugin indent on
 set hidden
 
 " Colorscheme
+autocmd ColorScheme * highlight Normal ctermbg=none
+autocmd ColorScheme * highlight LineNr ctermbg=none
 colorscheme maui
 
 " }}}

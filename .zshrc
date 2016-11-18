@@ -1,3 +1,6 @@
+autoload -Uz compinit
+compinit -C
+
 # Set Env variables
 export LANG=ja_JP.UTF-8
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
@@ -12,9 +15,19 @@ export PATH="/usr/local/sbin:$PATH"
 eval "$(rbenv init -)"
 
 # Inisialize nvm
-if [[ -s ~/.nvm/nvm.sh ]];
-  then source ~/.nvm/nvm.sh
-fi
+nvm() {
+	# unset nvm
+	unset -f nvm
+
+	# load nvm.sj
+	source "${NVM_DIR:-$HOME/.nvm}/nvm.sh"
+	if [[ -s ~/.nvm/nvm.sh ]];
+	  then source ~/.nvm/nvm.sh
+	fi
+
+	# Pass true args
+	nvm "$@"
+}
 
 # Initialize pyenv
 export PYENV_ROOT="${HOME}/.pyenv"
@@ -33,21 +46,22 @@ alias be='bundle exec'
 alias rs='rails s'
 alias -g G='| grep'
 
-# Zgen settings
-source "${HOME}/.zgen/zgen.zsh"
-ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=lightblue
+# Antigen settings
+source $(brew --prefix)/share/antigen/antigen.zsh
 
-# Zgen plugins
-if ! zgen saved; then
-  zgen oh-my-zsh
-  zgen oh-my-zsh plugins/git
-  zgen oh-my-zsh plugins/sudo
-  zgen oh-my-zsh plugins/command-not-found
-  zgen oh-my-zsh themes/af-magic
+# Load the oh-my-zsh's library.
+antigen-use oh-my-zsh
 
-  zgen load "b4b4r07/emoji-cli"
-  zgen load "zsh-users/zsh-syntax-highlighting"
-  zgen load "zsh-users/zsh-completions"
+antigen-bundle git
+antigen-bundle sudo
+antigen-bundle command-not-found
 
-  zgen save
-fi
+antigen-bundle b4b4r07/emoji-cli
+antigen-bundle zsh-users/zsh-syntax-highlighting
+antigen-bundle zsh-users/zsh-completions
+
+# Load the theme.
+antigen-theme robbyrussell
+
+# Tell antigen that you're done.
+antigen-apply

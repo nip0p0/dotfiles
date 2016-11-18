@@ -11,8 +11,9 @@ export EMOJI_CLI_KEYBIND="^b"
 export XDG_CONFIG_HOME=$HOME/.nvim
 export PATH="/usr/local/sbin:$PATH"
 
-# Use viins keymaps
+# # Use viins keymaps
 bindkey -v
+bindkey "^R" history-incremental-search-backward
 
 # Initialize rbenv
 eval "$(rbenv init -)"
@@ -54,10 +55,16 @@ source $HOME/.zplug/init.zsh
 # Make sure to use double quotes
 zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting", nice:10
 
 zplug "b4b4r07/zsh-vimode-visual", \
 	use:"*.zsh"
+
+zplug "junegunn/fzf-bin", \
+	as:command, \
+	from:gh-r, \
+	rename-to:fzf
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then

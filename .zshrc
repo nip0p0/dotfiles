@@ -23,8 +23,7 @@ nvm() {
 	# unset nvm
 	unset -f nvm
 
-	# load nvm.sj
-	source "${NVM_DIR:-$HOME/.nvm}/nvm.sh"
+	# load nvm.sh
 	if [[ -s ~/.nvm/nvm.sh ]];
 	  then source ~/.nvm/nvm.sh
 	fi
@@ -85,8 +84,8 @@ colors
 setopt prompt_subst
 
 zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr "%F{red}!"
-zstyle ':vcs_info:git:*' unstagedstr "%F{yellow}+"
+zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!"
+zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
 zstyle ':vcs_info:*' formats "%F{green}%c%u(%b)%f"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
 

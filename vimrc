@@ -307,6 +307,9 @@ filetype plugin indent on
 " Display another buffer when current buffer isn't saved.
 set hidden
 
+" Do not create swap files
+set noswapfile
+
 " Colorscheme
 autocmd ColorScheme * highlight Normal ctermbg=none
 autocmd ColorScheme * highlight LineNr ctermbg=none

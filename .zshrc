@@ -89,8 +89,15 @@ zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
 zstyle ':vcs_info:*' formats "%F{green}%c%u(%b)%f"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
 
-# call vsc_info
-precmd () { vcs_info }
+# call vsc_info and open tab in the same directory
+precmd () {
+	vcs_info
+	print -Pn "\e]2; %~/ \a"
+}
+
+preexec () {
+	print -Pn "\e]2; %~/ \a"
+}
 
 PROMPT='%{$fg[cyan]%}%~:%{$reset_color%}'
 PROMPT=$PROMPT'${vcs_info_msg_0_} %{${fg[cyan]}%}%}$%{${reset_color}%} '

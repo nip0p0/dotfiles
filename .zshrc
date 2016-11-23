@@ -8,10 +8,20 @@ export EMOJI_CLI_KEYBIND="^b"
 export XDG_CONFIG_HOME=$HOME/.nvim
 export PATH="/usr/local/sbin:$PATH"
 
-# Use viins keymaps
-bindkey -v
-bindkey "^R" history-incremental-search-backward
+# History settings
+export HISTFILE=${HOME}/.zsh_history
+export HISTSIZE=1000
+export SAVEHIST=100000
+setopt hist_ignore_dups
+setopt EXTENDED_HISTORY
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+setopt inc_append_history
+setopt share_history
 
+# Use viins keymaps
+bindkey -e
+bindkey "^R" history-incremental-search-backward
 
 # Initialize rbenv
 rbenv() {

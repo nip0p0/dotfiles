@@ -230,8 +230,8 @@ if dein#tap('vimfiler.vim')
 	let g:vimfiler_readonly_file_icon = '*'
 	let g:vimfiler_marked_file_icon = '√'
 
-	nnoremap <silent> <C-\> :<C-u>VimFilerExplorer -split -simple -winwidth=30 -toggle -no-quit<CR>
-	autocmd VimEnter * VimFilerExplorer -split -simple -winwidth=30 -toggle -no-quit
+	nnoremap <silent> <C-\> :<C-u>VimFilerExplorer -split -simple -winwidth=30 -no-quit<CR>
+	autocmd VimEnter * VimFilerExplorer -split -simple -winwidth=30 -no-quit
 	autocmd FileType vimfiler call s:vimfilerinit()
 	function! s:vimfilerinit()
 		set nonumber

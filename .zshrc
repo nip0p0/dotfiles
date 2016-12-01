@@ -24,13 +24,7 @@ bindkey -e
 bindkey "^R" history-incremental-search-backward
 
 # Initialize rbenv
-rbenv() {
-	unset -f rbenv
-
-  eval "$(command rbenv init -)"
-  rbenv "$@"
-}
-
+eval "$(rbenv init -)"
 
 # Inisialize nvm
 nvm() {

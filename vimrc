@@ -49,6 +49,10 @@ if dein#load_state(s:dein_dir)
 	call dein#add('othree/yajs.vim')
 	call dein#add('othree/javascript-libraries-syntax.vim')
 	call dein#add('kchmck/vim-coffee-script')
+	call dein#add('godlygeek/tabular')
+	call dein#add('rcmdnk/vim-markdown')
+	call dein#add('kannokanno/previm')
+	call dein#add('tyru/open-browser.vim')
 
   " Statusline
 	call dein#add('vim-airline/vim-airline')
@@ -189,6 +193,17 @@ if dein#tap('neocomplete.vim')
   if !exists('g:neocomplete#sources#omni#input_patterns')
 	  let g:neocomplete#sources#omni#input_patterns = {}
   endif
+endif
+
+" vim-markdown
+if dein#tap('vim-markdown')
+	let g:vim_markdown_folding_disabled = 1
+endif
+
+" previm
+if dein#tap('previm')
+	au BufRead,BufNewFile *.md set filetype=markdown
+	let g:previm_open_cmd = 'open -a Google\ Chrome'
 endif
 
 " syntastic

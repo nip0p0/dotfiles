@@ -4,6 +4,10 @@
 let s:use_dein = 1
 " }}}
 
+" FileType {{{
+au BufRead,BufNewFile *.md set filetype=markdown | let b:noStripWhitespace=1
+"}}}
+
 " Dein {{{
 let s:vimdir = $HOME . '/.vim'
 let s:dein_dir = s:vimdir . '/dein'
@@ -202,7 +206,6 @@ endif
 
 " previm
 if dein#tap('previm')
-	au BufRead,BufNewFile *.md set filetype=markdown
 	let g:previm_open_cmd = 'open -a Google\ Chrome'
 endif
 
@@ -257,7 +260,14 @@ endif
 " vim-trailing-whitespace
 if dein#tap('vim-trailing-whitespace')
 	" Delete whitespace automatically when current file is saved
-	autocmd BufWritePre * :FixWhitespace
+	autocmd BufWritePre *  call s:StripTrailingWhitespace()
+	fun! s:StripTrailingWhitespace()
+		" Only strip if the b:noStripeWhitespace variable isn't set
+		if exists('b:noStripWhitespace')
+			return
+		endif
+		:FixWhitespace
+	endfun
 endif
 
 " }}}

@@ -41,16 +41,7 @@ nvm() {
 }
 
 # Initialize pyenv
-pyenv() {
-	unset -f pyenv
-
-	export PYENV_ROOT="${HOME}/.pyenv"
-	if [ -d "${PYENV_ROOT}" ]; then
-		export PATH=${PYENV_ROOT}/bin:$PATH
-		eval "$(command pyenv init -)"
-		pyenv "$@"
-	fi
-}
+eval "$(pyenv init -)"
 
 # Set alias
 alias gco="git checkout"
